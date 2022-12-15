@@ -1,3 +1,15 @@
+# Advent of Code in Rust
+
+```bash
+cargo run
+# https://adventofcode.com/2022/day/1
+# ==> 72511
+```
+
+---
+
+#### Notes
+
 Switching rust versions
 
 ```bash
