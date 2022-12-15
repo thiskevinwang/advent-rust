@@ -1,3 +1,8 @@
+// https://stackoverflow.com/questions/69210771/why-cant-an-identifier-start-with-a-number
+#[path="2022/mod.rs"]
+mod twenty_twenty_two;
+use twenty_twenty_two::day1;
+
 fn main() {
-    println!("Hello, world!");
+   day1::solution()
 }
