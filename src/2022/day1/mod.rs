@@ -29,8 +29,8 @@ pub fn solution() {
         .collect();
 
     // todo: explain why what .enumerate() does -> that resulted in `// Some((250, 39436))`
-    let max_calories = elves.iter().max().unwrap();
-    println!("==> {:?}", max_calories); // 72511
+    // let max_calories = elves.iter().max().unwrap();
+    // println!("==> {:?}", max_calories); // 72511
 
     // part 2
     // I needed  to make `elves` mutable so that I could call `sort_by`.
