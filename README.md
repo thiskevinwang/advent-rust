@@ -6,6 +6,11 @@ cargo run
 # ==> 72511
 ```
 
+```bash
+# copying the template
+cp -R src/2022/template/day{{n}}/ src/2022/day4
+```
+
 ---
 
 #### Notes
