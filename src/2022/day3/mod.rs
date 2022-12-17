@@ -29,7 +29,8 @@ pub fn solution() {
     let rucksacks = res.lines();
 
     let mut sum = 0;
-    for sack in rucksacks {
+    // clone this so that the value may be used again for part 2
+    for sack in rucksacks.clone() {
         // split lines in half; these are the two compartments
         let (l, r) = sack.split_at(sack.len() / 2);
         // find intersection between the two strings-as-lists
@@ -43,5 +44,39 @@ pub fn solution() {
         sum += priority;
     }
 
-    println!("==> {}", sum) // 8515
+    println!("==> {}", sum); // 8515
+
+    let mut sum = 0;
+    // Part 2
+    // Chunk the file by 3 rows:
+    //
+    // > Note: An iterator only provides one element at a time,
+    // > whereas a slice is about getting several elements at a time.
+    // > - https://stackoverflow.com/a/33189335/9823455
+    let rucksacks_vec = rucksacks.map(|line| line.clone()).collect::<Vec<&str>>();
+    // ↑ This is how to convert Lines() to Vec<&str>,
+    //   so that I can call `.chunks(n)` ↓
+    let elf_groups = rucksacks_vec.chunks(3);
+
+    for group in elf_groups {
+        // get intersection of the 3 lines in each group
+        if let [a, b, c] = *group {
+            let ac = a.chars().collect::<HashSet<char>>();
+            let bc = b.chars().collect::<HashSet<char>>();
+            let cc = c.chars().collect::<HashSet<char>>();
+
+            // I got a compiler error by chaining too many methods here.
+            // Needed to use a "let binding" to have temporary values live longer.
+            let ac_bc_inter = ac.intersection(&bc).map(|e| *e).collect::<HashSet<char>>();
+
+            // this needs to be mutable for `.nth()` to compile
+            let mut common = ac_bc_inter.intersection(&cc);
+            let char = common.nth(0).unwrap();
+
+            let priority = ASCII.iter().position(|e| e == char).unwrap();
+            sum += priority;
+        }
+    }
+
+    println!("==> {}", sum);
 }
