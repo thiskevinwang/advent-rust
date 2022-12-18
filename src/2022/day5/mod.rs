@@ -105,9 +105,9 @@ pub fn solution() {
                     let final_length = source.len().saturating_sub(mv);
                     let tail = source.split_off(final_length);
 
-                    for el in tail {
-                        map2.get_mut(target).unwrap().push(el);
-                    }
+                    // how to concat vectors
+                    // https://stackoverflow.com/a/40795247/9823455
+                    map2.get_mut(target).unwrap().extend(tail);
                 }
             }
         }
