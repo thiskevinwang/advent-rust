@@ -15,8 +15,10 @@ pub fn solution() {
 
     let assignment_pairs = res.lines();
 
+    let mut contain_ct = 0;
     let mut overlap_ct = 0;
 
+    // clone so that part 2 does not try to use a moved value
     for pair in assignment_pairs {
         let ranges: Vec<&str> = pair.split(",").collect();
         if let [l, r] = ranges[..] {
@@ -28,17 +30,25 @@ pub fn solution() {
             let r_min = r_bounds[0];
             let r_max = r_bounds[1];
 
+            // check if either list contains the other
             let l_in_r = l_min >= r_min && l_max <= r_max;
             let r_in_l = r_min >= l_min && r_max <= l_max;
             if l_in_r || r_in_l {
+                contain_ct += 1;
+            }
+
+            // check if there is any overlap at all
+            let l_over_r = l_min <= r_max && l_max >= r_min;
+            let r_over_l = l_max >= r_min && l_min <= r_max;
+            if l_over_r || r_over_l {
                 overlap_ct += 1;
             }
         }
     }
 
     // Part 1
-    println!("==> {}", overlap_ct); // 567
+    println!("==> {}", contain_ct); // 567
 
     // Part 2
-    // println!("==> {}" /* */);
+    println!("==> {}", overlap_ct); // 907
 }
