@@ -14,6 +14,10 @@ pub fn solution() {
     let res = str::from_utf8(&slice).unwrap();
 
     if let [stack_str, procedures] = res.split("\n\n").collect::<Vec<&str>>()[..] {
+        // Stacks are built bottom up from lines 8 to 1
+        // Map keys at line 9
+        // Procedures start at line 11
+
         // Get indices of columns
         // 1 @ 1
         // 2 @ 5
@@ -24,7 +28,6 @@ pub fn solution() {
         // 7 @ 25
         // 8 @ 29
         // 9 @ 33
-        // Stack lines runs from [0..7]
 
         // Note: declare map as mutable because we'll call `.get_mut()`
         // https://doc.rust-lang.org/std/collections/struct.HashMap.html#method.get_mut
@@ -48,16 +51,20 @@ pub fn solution() {
         let stack_lines = stack_str.lines().rev();
         for (i, line) in stack_lines.enumerate() {
             if i == 0 {
+                // Disregard this line; It holds keys.
                 continue;
             }
-            for (hash_key, col_idx) in vec![1, 5, 9, 13, 17, 21, 25, 29, 33].iter().enumerate() {
-                // accessing vector by index: Vec<char>[usize]
-                // dereference `&i32` and case to `usize`
+            for (i, col_idx) in vec![1, 5, 9, 13, 17, 21, 25, 29, 33].iter().enumerate() {
+                // Types needed to access vector by index? -> Vec<char>[usize]
+                // And you can dereference `&i32` and cast to `usize`
                 let char = line.chars().collect::<Vec<char>>()[*col_idx as usize];
+
+                // if there is indeed a char at this index in input ([ ]),
+                // push it onto our stack, located at the designated key
                 if char != ' ' {
-                    map.get_mut(&(hash_key + 1)).unwrap().push(char);
+                    map.get_mut(&(i + 1)).unwrap().push(char);
                     // for part 2...
-                    map2.get_mut(&(hash_key + 1)).unwrap().push(char);
+                    map2.get_mut(&(i + 1)).unwrap().push(char);
                 }
             }
         }
@@ -138,6 +145,6 @@ pub fn solution() {
                 return acc;
             });
 
-        println!("==> {}", crates2);
+        println!("==> {}", crates2); // WZMFVGGZP
     }
 }
