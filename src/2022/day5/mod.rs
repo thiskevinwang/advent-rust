@@ -105,7 +105,6 @@ pub fn solution() {
                     let final_length = source.len().saturating_sub(mv);
                     let tail = source.split_off(final_length);
 
-                    // how to push multiple elements
                     for el in tail {
                         map2.get_mut(target).unwrap().push(el);
                     }
