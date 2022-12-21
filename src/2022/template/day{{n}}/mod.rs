@@ -15,7 +15,7 @@ pub fn solution() {
     */
 
     // Part 1
-    println!("==> {}" /* */);
+    println!("==> {}", "todo");
     // Part 2
-    println!("==> {}" /* */);
+    println!("==> {}", "todo");
 }
