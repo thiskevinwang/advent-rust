@@ -1,11 +1,3 @@
-use rust_embed::RustEmbed;
-use std::str;
-
-// https://crates.io/crates/rust-embed
-#[derive(RustEmbed)]
-#[folder = "src/2022/day2/"]
-struct Asset;
-
 const ROCK: u32 = 1;
 const PAPER: u32 = 2;
 const SCISSORS: u32 = 3;
@@ -18,13 +10,7 @@ const WIN: u32 = 6;
 // C Z - Scissors - 3pt | Win  6pt
 pub fn solution() {
     println!("https://adventofcode.com/2022/day/2");
-
-    let file = Asset::get("input.txt").unwrap();
-
-    let vec = file.data.to_owned();
-    let res = str::from_utf8(&vec).unwrap();
-
-    let rounds = res.lines();
+    let rounds = include_str!("input.txt").lines();
 
     let mut sum = 0;
     for round in rounds.clone() {

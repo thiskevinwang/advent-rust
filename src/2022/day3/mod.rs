@@ -1,6 +1,3 @@
-use rust_embed::RustEmbed;
-use std::str;
-
 use std::collections::HashSet;
 
 // The English alphabet as a vector of characters in Rust
@@ -13,20 +10,9 @@ static ASCII: [char; 53] = [
     'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 ];
 
-// https://crates.io/crates/rust-embed
-#[derive(RustEmbed)]
-#[folder = "src/2022/day3/"]
-struct Asset;
-
 pub fn solution() {
     println!("https://adventofcode.com/2022/day/3");
-
-    let file = Asset::get("input.txt").unwrap();
-
-    let vec = file.data.to_owned();
-    let res = str::from_utf8(&vec).unwrap();
-
-    let rucksacks = res.lines();
+    let rucksacks = include_str!("input.txt").lines();
 
     let mut sum = 0;
     // clone this so that the value may be used again for part 2

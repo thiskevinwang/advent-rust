@@ -1,17 +1,9 @@
 use regex::Regex;
-use rust_embed::RustEmbed;
 use std::{collections::HashMap, str};
 
-// https://crates.io/crates/rust-embed
-#[derive(RustEmbed)]
-#[folder = "src/2022/day5/"]
-struct Asset;
 pub fn solution() {
     println!("https://adventofcode.com/2022/day/5");
-    let file = Asset::get("input.txt").unwrap();
-
-    let slice = file.data.to_owned();
-    let res = str::from_utf8(&slice).unwrap();
+    let res = include_str!("input.txt");
 
     if let [stack_str, procedures] = res.split("\n\n").collect::<Vec<&str>>()[..] {
         // Stacks are built bottom up from lines 8 to 1

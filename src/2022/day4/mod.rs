@@ -1,17 +1,7 @@
-use rust_embed::RustEmbed;
-use std::str;
-
-// https://crates.io/crates/rust-embed
-#[derive(RustEmbed)]
-#[folder = "src/2022/day4/"]
-struct Asset;
 pub fn solution() {
     println!("https://adventofcode.com/2022/day/4");
 
-    let file = Asset::get("input.txt").unwrap();
-
-    let vec = file.data.to_owned();
-    let res = str::from_utf8(&vec).unwrap();
+    let res = include_str!("input.txt");
 
     let assignment_pairs = res.lines();
 

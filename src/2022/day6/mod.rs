@@ -1,18 +1,8 @@
-use rust_embed::RustEmbed;
+use std::collections::HashSet;
 use std::hash::Hash;
-use std::{collections::HashSet, str};
-
-// https://crates.io/crates/rust-embed
-#[derive(RustEmbed)]
-#[folder = "src/2022/day6/"]
-struct Asset;
 pub fn solution() {
     println!("https://adventofcode.com/2022/day/6");
-
-    let file = Asset::get("input.txt").unwrap();
-    let slice = file.data.to_owned();
-    let res = str::from_utf8(&slice).unwrap();
-
+    let res = include_str!("input.txt");
     // convert input into a iterator of chars
     let chars = res.chars().into_iter();
 
