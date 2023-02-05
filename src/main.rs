@@ -9,4 +9,5 @@ fn main() {
     twenty_twenty_two::day4::solution();
     twenty_twenty_two::day5::solution();
     twenty_twenty_two::day6::solution();
+    twenty_twenty_two::day7::solution();
 }
